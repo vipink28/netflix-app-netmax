@@ -1,13 +1,41 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+.navbar-brand img{
+    max-width: 92.5px;
+  }
+  .navbar{
+    background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
+  }
+  .navbar-nav .nav-link{
+    color: #e5e5e5;
+  }
+  .dropdown-toggle.nav-link{
+    color: #fff;
+  }
+  .navbar-nav .nav-link.active{
+    color: #fff;
+    font-weight: 700;
+  }
+  .navbar .dropdown-toggle.nav-link>img{
+    width: 50px;
+  }
+  .bottom-shadow{
+      background-color: transparent;
+      background-image: linear-gradient(180deg,hsla(0,0%,8%,0) 0,hsla(0,0%,8%,.15) 15%,hsla(0,0%,8%,.35) 29%,hsla(0,0%,8%,.58) 44%,#141414 68%,#141414);
+      background-position: 0 top;
+      background-repeat: repeat-x;
+      background-size: 100% 100%;
+      bottom: -1px;
+      height: 14.7vw;
+      opacity: 1;
+      top: auto;
+      width: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      z-index: 8;
+  }
+  
+  .header .details{
+    text-shadow: 1px 1px 1px #141414;
+  }
