@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 function Header(props) {
-
     const { headerMovie } = props;
-    console.log(headerMovie);
     return (        
         <div className='h-100 position-relative header'>
             <div className="position-absolute w-50 top-50 start-0 translate-middle-y details px-4">
@@ -14,7 +12,7 @@ function Header(props) {
                     <Link className='btn btn-light btn-lg' to="info">More Info</Link>
                 </div>
             </div>
-            
+            {/* https://image.tmdb.org/t/p/original  this is the base url for all images in TMDB API*/}
             <img className='img-fluid w-100' src={`https://image.tmdb.org/t/p/original${headerMovie.backdrop_path}`} alt="" />
             <div className="bottom-shadow"></div>
         </div>
