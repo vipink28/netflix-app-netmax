@@ -2,16 +2,17 @@ import React from "react";
 import Header from "./Header";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getNetflixOriginals, getNowPlayingMovies, getPopularMovies, getTopRatedMovies, getTrendingAll, getUpcomingMovies } from "../action";
+import { getNetflixOriginals, getNowPlayingMovies, getPopularMovies, getTopRatedMovies, getUpcomingMovies } from "../action";
 import Loader from "./common/Loader";
 import Row from './Row';
+
 
 function Homescreen(props) {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state);
 
-  const { netflixOriginals, topRatedMovies, nowPlayingMovies, popularMovies, trendingAll, upcomingMovies } = data;
+  const { netflixOriginals, topRatedMovies, nowPlayingMovies, popularMovies, upcomingMovies } = data;
 
 
   //desctrucure the state received from store
@@ -23,7 +24,6 @@ function Homescreen(props) {
     dispatch(getPopularMovies());
     dispatch(getUpcomingMovies());
     dispatch(getNowPlayingMovies());
-    dispatch(getTrendingAll());
     dispatch(getTopRatedMovies());
   }, [dispatch]);
 
@@ -43,20 +43,15 @@ function Homescreen(props) {
         {/* pass a random movie to header */}
           <Header  headerMovie = {movieList[randomNumber()]}/>
           <div className="wrapper container-fluid">
-           <Row content={netflixOriginals} title="Netflix Originals"/>
-           <Row content={popularMovies} title="Popular Movies"/>
-           <Row content={trendingAll} title="Trending Now"/>
-           <Row content={nowPlayingMovies} title="Now Playing"/>
-           <Row content={topRatedMovies} title="Top Rated Movies"/>
-           <Row content={upcomingMovies} title="Upcoming Movies"/>
+           <Row content={netflixOriginals} type="tv" index={0} title="Netflix Originals"/>
+           <Row content={popularMovies} type="movie" title="Popular Movies"/>
+           <Row content={nowPlayingMovies} type="movie" title="Now Playing"/>
+           <Row content={topRatedMovies} type="movie" title="Top Rated Movies"/>
+           <Row content={upcomingMovies} type="movie" title="Upcoming Movies"/>
            </div>
         </>
-
-
       )}
       
-
-
     </div>
   );
 }

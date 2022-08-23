@@ -1,9 +1,21 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import avatar from '../../assets/avatar.png';
+import { useDispatch } from 'react-redux';
+import { searchQuery } from '../../features/movies/movieSlice';
 
 function Navigation(props) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleChange=(event)=>{
+    const {value} = event.target;
+    dispatch(searchQuery(value.toLowerCase()));
+    navigate('/search');
+  }
+
+
     return (
       <nav className="navbar navbar-expand-md fixed-top" aria-label="netflixnavbar">
       <div className="container-fluid">
@@ -35,12 +47,12 @@ function Navigation(props) {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="genre/tv">
+              <NavLink className="nav-link" to="tv">
                 Tv Shows
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="genre/movie">
+              <NavLink className="nav-link" to="movie">
                 Movies
               </NavLink>
             </li>
@@ -61,6 +73,7 @@ function Navigation(props) {
               type="search"
               placeholder="Search"
               aria-label="Search"
+              onChange={handleChange}
             />
           </form>
           <div className="nav-item dropdown">
