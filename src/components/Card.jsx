@@ -22,7 +22,7 @@ function Card(props) {
 
   return (
     <>
-      <div className="card movie-card border-0">
+      <div className="card movie-card border-0 rounded-0">
         <div className="row-card" onClick={()=>{showDetails(movie.id)}}>
         <img
           src={`https://image.tmdb.org/t/p/original${

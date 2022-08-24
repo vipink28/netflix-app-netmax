@@ -1,30 +1,32 @@
 import React from "react";
 import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { useRef } from "react";
 
 function SignUp(props) {
   const email = useRef(null);
   const password = useRef(null);
 
-  const signUp = () => {
-    auth     
-      .createUserWithEmailAndPassword(
+  const createUser = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(
+        auth,
         email.current.value,
         password.current.value
       )
       .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
-        console.log(user)
+        console.log(user);
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode + "," + errorMessage)
+        console.log(errorCode + "," + errorMessage);
       });
   };
   return (
-    <div className="container">
+    <div className="container vh-100 d-flex flex-column justify-content-center">
       <form>
         <input
           className="form-control"
@@ -41,7 +43,7 @@ function SignUp(props) {
           placeholder="Password"
         />
 
-        <button onClick={signUp}>Sign Up</button>
+        <button onClick={createUser}>Sign Up</button>
       </form>
     </div>
   );
