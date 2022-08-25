@@ -30,8 +30,6 @@ const handleClose = () =>{
   setViewTrailer(!viewTrailer);
 }
 
-
-
 let rating = movieDetail.vote_average / 2;
 let count = Math.floor(rating);
 const totalStars = [...Array(5)];

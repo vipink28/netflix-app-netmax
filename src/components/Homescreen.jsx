@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { getNetflixOriginals, getNowPlayingMovies, getPopularMovies, getTopRatedMovies, getUpcomingMovies } from "../action";
 import Loader from "./common/Loader";
 import Row from './Row';
+import Navigation from "./common/Navigation";
+import { Outlet } from "react-router-dom";
 
 
 function Homescreen(props) {
@@ -33,6 +35,11 @@ function Homescreen(props) {
   }
 
   return (
+
+    <>
+      <Navigation />  
+
+    <Outlet />
     <div>
       {/* if data is loading show loading icon   */}
       {loading ? (
@@ -53,6 +60,7 @@ function Homescreen(props) {
       )}
       
     </div>
+    </>
   );
 }
 

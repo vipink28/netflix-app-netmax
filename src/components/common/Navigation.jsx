@@ -1,26 +1,44 @@
-import React from 'react';
-import {NavLink, useNavigate } from 'react-router-dom';
-import logo from '../../assets/logo.png';
-import avatar from '../../assets/avatar.png';
-import { useDispatch } from 'react-redux';
-import { searchQuery } from '../../features/movies/movieSlice';
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import logo from "../../assets/logo.png";
+import avatar from "../../assets/avatar.png";
+
+import { useDispatch } from "react-redux";
+import { searchQuery } from "../../features/movies/movieSlice";
+
+import { getAuth, signOut } from "firebase/auth";
+import { logout } from "../../features/user/userSlice";
 
 function Navigation(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleChange=(event)=>{
-    const {value} = event.target;
+  const handleChange = (event) => {
+    const { value } = event.target;
     dispatch(searchQuery(value.toLowerCase()));
-    navigate('/search');
-  }
+    navigate("/search");
+  };
 
+  const exit = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        dispatch(logout());
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
 
-    return (
-      <nav className="navbar navbar-expand-md fixed-top" aria-label="netflixnavbar">
+  return (
+    <nav
+      className="navbar navbar-expand-md fixed-top"
+      aria-label="netflixnavbar"
+    >
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          <img src={ logo } alt="Netflix" />
+          <img src={logo} alt="Netflix" />
         </NavLink>
         <button
           className="navbar-toggler"
@@ -83,7 +101,7 @@ function Navigation(props) {
               aria-expanded="false"
               role="button"
             >
-              <img src={ avatar } alt="avatar" />
+              <img src={avatar} alt="avatar" />
             </div>
             <ul className="dropdown-menu dropdown-menu-end text-end mt-3">
               <li>
@@ -107,16 +125,16 @@ function Navigation(props) {
                 </NavLink>
               </li>
               <li>
-                <NavLink className="dropdown-item" to="signout">
+                <span className="dropdown-item" onClick={exit}>
                   Sign out of Netflix
-                </NavLink>
+                </span>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
-    );
+  );
 }
 
-export default Navigation
+export default Navigation;
